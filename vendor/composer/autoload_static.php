@@ -11,9 +11,9 @@ class ComposerStaticInit3fc2814d3d89cebca2516c37914a1a64
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'Z' => 
         array (
-            'Slim\\Http\\' => 10,
+            'Zend\\Diactoros\\' => 15,
         ),
         'P' => 
         array (
@@ -36,9 +36,9 @@ class ComposerStaticInit3fc2814d3d89cebca2516c37914a1a64
     );
 
     public static $prefixDirsPsr4 = array (
-        'Slim\\Http\\' => 
+        'Zend\\Diactoros\\' => 
         array (
-            0 => __DIR__ . '/..' . '/slim/http/src',
+            0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
         ),
         'Psr\\Http\\Message\\' => 
         array (

@@ -37,8 +37,9 @@ The lessons are structured into the following modules:
 **1. Authentication**
 
 - Password management (`/module-1.1`)
-- Password hashing (`/module-1.2`)
-- Account reset tokens (`/module-1.3`)
+- Password storage (`/module-1.2`)
+- Password hashing (`/module-1.3`)
+- Account reset tokens (`/module-1.4`)
 
 **2. Credential Management**
 
