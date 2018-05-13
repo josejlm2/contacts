@@ -46,16 +46,21 @@ The lessons are structured into the following modules:
 - Amazon KMS (`/module-2.1`)
 - `.env` files (`/module-2.2`)
 
-**3. Encryption**
+**3. Data validation**
+
+- Input sanitization
+- Output escaping
+
+**4. Encryption**
 
 - File encryption (`/module-3.1`)
 - Database encryption (`/module-3.2`)
 
-**4. Session Management**
+**5. Session Management**
 
 - Server-side data management (`/module-4.1`)
 
-**5. Long-term Trust**
+**6. Long-term Trust**
 
 - Authenticated encryption and decryption (`/module-5.1`)
 - Document signing (`/module-5.2`)
