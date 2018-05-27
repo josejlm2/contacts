@@ -102,3 +102,28 @@ function welcome(): string
 </html>
 BODY;
 }
+
+/**
+ * Find a specific user in the system
+ *
+ * @param string $username
+ *
+ * @throws \Exception
+ *
+ * @return array
+ */
+function get_user_by_username(string $username): array
+{
+    $handle = new \PDO('sqlite:users.db');
+
+    $statement = $handle->prepare('SELECT * from users_old where username = :username');
+    $statement->execute([':username' => $username]);
+
+    $users = $statement->fetchAll();
+
+    if (empty($users)) {
+        throw new \Exception(sprintf('No user with username %s found!', $username));
+    }
+
+    return $users[0];
+}
