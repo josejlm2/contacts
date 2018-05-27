@@ -4,7 +4,7 @@ This is an iterative demo application prepared for php[tek] 2018. It's divided i
 
 Each module subdirectory contains:
 
-- `app.php`    A basic http router to power a built-in PHP server
+- `index.php`  A basic http router to power a built-in PHP server
 - `util.php`   Various utility functions provided to make life easier during the lesson at hand
 - `lesson.php` The actual code for that given lesson - most with placeholders
 
@@ -21,10 +21,16 @@ The modules themselves are self-contained and share their dependencies.
 Each module is a self-contained application and is meant to be worked on one at a time. Merely `cd` into the target directory, then run the following to start the PHP webserver:
 
 ```sh
-php -S localhost:8888 app.php
+php -S localhost:8888 -t module-1
 ```
 
 The application itself can now be [viewed in a web browser](http://localhost:8888).
+
+Alternatively, with Docker:
+
+```sh
+./dockphp -S 0.0.0.0:8888 -t module-1
+```
 
 **Note:** You can only run one application at a time as they share the same port.
 
