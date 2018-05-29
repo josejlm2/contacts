@@ -13,14 +13,41 @@ namespace EAMann\Contacts\Lesson;
  * of the encryption in `secret.txt` for later retrieval.
  *
  * @param string $message
+ * @throws \Exception
  */
 function store_secret_message(string $message)
 {
     // @TODO Encrypt the secret string using Libsodium. You can either use an asymmetric keypair or a single symmetric key
 
-    // @TODO Use the tricks learned in lesson 2 to protect the key(s) you use for encryption!
+    require_once '../config/config.php';
 
-    file_put_contents('secret.txt', $message);
+
+
+
+
+
+    // @TODO Use the tricks learned in lesson 2 to protect the key(s) you use for encryption!
+    $nonce = random_bytes(SODIUM_CRYPTO_BOX_NONCEBYTES);
+//    echo bin2hex($nonce);
+
+
+
+
+
+
+    $sender_key = 'asdfas';
+    $recipent_key = 'adfadsfsad'; //public key
+
+//    $key_pair = sodium_crypto_box_keypair_from_secretkey_and_publickey($sender_key, $recipent_key);
+    $key_pair = sodium_crypto_box_keypair_from_secretkey_and_publickey(hex2bin(PRIVATE_KEY), hex2bin(PUBLIC_KEY));
+
+    $cipher = sodium_crypto_box($message, $nonce, $key_pair);
+
+//    $store = base64_encode($encrypted);
+
+    $store = bin2hex($nonce.$cipher);
+
+    file_put_contents('config/secret.txt', $store);
 }
 
 /**
@@ -30,7 +57,15 @@ function store_secret_message(string $message)
  */
 function get_secret_message() : string
 {
-    $message = file_get_contents('secret.txt');
+    $message = file_get_contents('config/secret.txt');
+
+    $keypair = sodium_crypto_box_keypair_from_secretkey_and_publickey(hex2bin(PRIVATE_KEY), hex2bin(PUBLIC_KEY));
+
+    $bits =  hex2bin($message);
+    $nonce = substr($bits, 0, SODIUM_CRYPTO_BOX_NONCEBYTES);
+    $cipher = substr($bits, SODIUM_CRYPTO_BOX_NONCEBYTES);
+
+    $message = sodium_crypto_box_open($message,$nonce,$keypair);
 
     // @TODO Read the contents of `secret.txt` and decrypt them for presentation.
 
