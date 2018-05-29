@@ -19,10 +19,14 @@ function list_contacts(): array
     // @TODO Pull all contacts out of the database, automatically decrypting email addresses as we go.
 
     $contacts = [];
+//    $handle = new \SQLite3('contacts.db');
+//    $results = $handle->query('SELECT * FROM contacts');
 
-    $handle = new \SQLite3('contacts.db');
+    $handle = new \PDO('sqlite:contacts.db');
+    
 
-    $results = $handle->query('SELECT * FROM contacts');
+
+
     while ($row = $results->fetchArray()) {
 
         // This won't decrypt anything ... just pass out the name and email address
