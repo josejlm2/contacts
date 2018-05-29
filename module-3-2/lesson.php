@@ -10,12 +10,15 @@ use EAMann\Contacts\Util\Contact;
 
 
 
-function encrypt(){
+function encrypt($message){
     $nonce = ;
+
+
+    return $message;
 }
 
-function decrypt(){
-
+function decrypt($message){
+    return $message;
 }
 
 
@@ -100,4 +103,28 @@ function find_contact(string $email) : Contact
     $handle->close();
 
     return $contact;
+}
+
+class EncryptedSessionHandler extends SessionHandler
+{
+    private $key;
+
+
+    public function read($id)
+    {
+        $data = parent::read($id);
+
+        if (!$data) {
+            return "";
+        } else {
+            return decrypt($data, $this->key);
+        }
+    }
+
+    public function write($id, $data)
+    {
+        $data = encrypt($data, $this->key);
+
+        return parent::write($id, $data);
+    }
 }

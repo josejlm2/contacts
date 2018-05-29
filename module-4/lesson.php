@@ -20,7 +20,7 @@ function store_secret_message(string $message)
 
     // @TODO Use the tricks learned in lesson 2 to protect the key(s) you use for encryption!
 
-    $_SESSION['secret_message'] = $message;
+    $_SESSION['secret_message'] = encrypt($message);
 }
 
 /**
@@ -30,7 +30,7 @@ function store_secret_message(string $message)
  */
 function get_secret_message() : string
 {
-    $message = $_SESSION['secret_message'];
+    $message = decrypt($_SESSION['secret_message']);
 
     // @TODO Read the secret contents of the user's session and decrypt them for presentation.
 

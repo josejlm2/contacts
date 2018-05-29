@@ -25,6 +25,7 @@ require_once __DIR__ . '/util.php';
 require_once __DIR__ . '/lesson.php';
 
 ini_set('session.save_path', getcwd());
+ini_set('session.save_handler', 'files');
 session_start();
 
 $container = new Container;
