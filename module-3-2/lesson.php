@@ -7,6 +7,26 @@ namespace EAMann\Contacts\Lesson;
 
 use EAMann\Contacts\Util\Contact;
 
+
+
+
+function encrypt(){
+    $nonce = ;
+}
+
+function decrypt(){
+
+}
+
+
+
+
+
+
+
+
+
+
 /**
  * Pull a list of all contacts from the database, automatically decrypting
  * the email field (and other sensitive fields) as you go.
@@ -21,10 +41,15 @@ function list_contacts(): array
 
     $handle = new \SQLite3('contacts.db');
 
-    $results = $handle->query('SELECT * FROM contacts');
+    $emailHash = hash_hmac('sha512', $email, HMAC_KEY);
+
+
+
+    $results = $handle->query("SELECT * FROM contacts WHERE email_hash - '%'  ");
     while ($row = $results->fetchArray()) {
 
         // This won't decrypt anything ... just pass out the name and email address
+        $email = decrypt
         $contacts[] = new Contact($row['name'], $row['email']);
     }
 
@@ -45,6 +70,9 @@ function create_contact(string $name, string $email)
     // @TODO The email address needs to be encrypted at rest. But we also need to query on this field!
 
     $handle = new \SQLite3('contacts.db');
+
+    $hashed
+
 
     $handle->exec(sprintf("INSERT INTO contacts (name, email) VALUES ('%s', '%s')", $name, $email));
 
