@@ -9,6 +9,7 @@
  */
 
 namespace EAMann\Contacts\Lesson;
+use function EAMann\Contacts\Util\get_user_by_username;
 
 /**
  * The authentication form will send us the user's input for their authentication
@@ -26,6 +27,50 @@ namespace EAMann\Contacts\Lesson;
  */
 function validate_auth(string $username, string $password)
 {
+
+    $reset_token = new \SQLite3(('users.db'));
+
+    try{
+        $user = get_user_by_username($username);
+
+        if(password_verify($password, $user['password'])){
+            $_SESSION['auth'] = $username;
+            return true;
+        }
+
+        return false;
+
+    } catch (\Exception $e){
+        return false;
+    }
+
+
+
+
+
+//    $password = password_hash('thisissecure', PASSWORD_DEFAULT);
+//    hash_equals('known_string', 'user_provided_string');
+
+//    password_verify($password,$hash);
+
+
+
+    switch($username){
+        case 'admin':
+            $_SESSION['auth'] = 'admin';
+
+            return password_verify($password, password_hash('thisisinsecure', PASSWORD_DEFAULT));
+            return $password === 'thisissecure';
+
+        case 'user':
+            $_SESSION['auth'] = 'user';
+            return $password === 'password';
+            break;
+        default:
+            return false;
+    }
+
+
     /**
      * @TODO
      * Match usernames to passwords to verify authentication data. If we find a match,
