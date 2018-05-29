@@ -42,31 +42,36 @@ The lessons are structured into the following modules:
 
 **1. Authentication**
 
-- Password management (`/module-1.1`)
-- Password storage (`/module-1.2`)
-- Password hashing (`/module-1.3`)
-- Account reset tokens (`/module-1.4`)
+`module-1`
+
+- Password management
+- Password storage
+- Password hashing
+- Account reset tokens
 
 **2. Credential Management**
 
-- Amazon KMS (`/module-2.1`)
-- `.env` files (`/module-2.2`)
+`module-2`
 
-**3. Data validation**
+**3. Encryption**
+
+- File encryption (`/module-3`)
+- Database encryption (`/module-3-2`)
+
+**4. Session Management**
+
+`/module-4`
+
+- Server-side data management
+
+**5. Data validation**
+
+`/module-5`
 
 - Input sanitization
-- Output escaping
-
-**4. Encryption**
-
-- File encryption (`/module-3.1`)
-- Database encryption (`/module-3.2`)
-
-**5. Session Management**
-
-- Server-side data management (`/module-4.1`)
 
 **6. Long-term Trust**
 
-- Authenticated encryption and decryption (`/module-5.1`)
-- Document signing (`/module-5.2`)
+`module-6`
+
+- Document signing
